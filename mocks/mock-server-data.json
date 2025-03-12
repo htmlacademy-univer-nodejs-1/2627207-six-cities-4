@@ -1,0 +1,97 @@
+{
+  "api": {
+    "titles": [
+      "Квартира в спальном районе Парижа",
+      "Дом в Амстердаме",
+      "Двухкомнатная квартира в Кёльне с видом на реку",
+      "Шикарные аппартаменты в Брюсселе",
+      "Дом в пяти минутах от Дюссельдорфа",
+      "Номер в элитном отеле в Гамбурге"
+    ],
+    "descriptions": [
+      "Современная квартира с ремонтом.",
+      "Двухэтажный дом с балконом и двумя спальнями.",
+      "Милая и уютная квартира с видом на реку.",
+      "Аппартаменты 90 кв. м. в центре города со всеми удобствами.",
+      "Новый комфортный дом с системой умный дом в шаговой доступности от города.",
+      "Номер в элитном отеле в центре города с обслуживанием и завтраками."
+    ],
+    "cities": [
+      "Paris",
+      "Amsterdam",
+      "Cologne",
+      "Brussels",
+      "Dusseldorf",
+      "Hamburg"
+    ],
+    "previewPhotos": [
+      "preview-photo1.jpg",
+      "preview-photo2.jpg",
+      "preview-photo3.jpg",
+      "preview-photo4.jpg",
+      "preview-photo5.jpg",
+      "preview-photo6.jpg",
+      "preview-photo7.jpg"
+    ],
+    "photos": [
+      "photo1.jpg",
+      "photo2.jpg",
+      "photo3.jpg",
+      "photo4.jpg",
+      "photo5.jpg",
+      "photo6.jpg",
+      "photo7.jpg"
+    ],
+    "housingTypes": [
+      "apartment",
+      "house",
+      "room",
+      "hotel"
+    ],
+    "amenities": [
+      "Air conditioning",
+      "Washer",
+      "Towels",
+      "Fridge",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Breakfast"
+    ],
+    "authorNames": [
+      "Евгений Картошкин",
+      "Екатерина Морозова",
+      "Надежда Ким",
+      "Александр Парфенов",
+      "Иван Тихомиров",
+      "Елизавета Кустова"
+    ],
+    "authorEmails": [
+      "mrs.mrz@gmail.com",
+      "ya-4elovek@yandex.ru",
+      "ewe-odna-po4ta@mail.ru",
+      "tsvety-serov@yandex.ru",
+      "kto-toTam@mail.ru",
+      "6-author-email@gmail.com"
+    ],
+    "authorAvatars": [
+      "author_avatar1.jpg",
+      "author_avatar2.jpg",
+      "author_avatar3.jpg",
+      "author_avatar4.jpg",
+      "author_avatar5.jpg",
+      "author_avatar6.jpg"
+    ],
+    "authorTypes": [
+      "Base",
+      "Pro"
+    ],
+    "coordinates": [
+      "48.85661; 2.351499",
+      "50.938361; 6.959974",
+      "50.846557; 4.351697",
+      "52.370216; 4.895168",
+      "53.550341; 10.000654",
+      "51.225402; 6.776314"
+    ]
+  }
+}
