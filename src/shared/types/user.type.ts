@@ -4,6 +4,6 @@ export type User = {
   name: string;
   email: string;
   password?: string;
-  userType?: UserType;
+  userType: UserType;
   avatarPath?: string;
 }
