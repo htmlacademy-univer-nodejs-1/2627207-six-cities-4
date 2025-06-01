@@ -15,12 +15,9 @@ import { CommentEntity } from '../comment/comment.entity.js';
 export class DefaultOfferService implements OfferService {
   constructor(
     @inject(Component.Logger) private readonly logger: Logger,
-    @inject(Component.OfferModel)
-    private readonly offerModel: types.ModelType<OfferEntity>,
-    @inject(Component.FavoriteModel)
-    private readonly favoriteModel: types.ModelType<FavoriteEntity>,
-    @inject(Component.CommentModel)
-    private readonly commentModel: types.ModelType<CommentEntity>
+    @inject(Component.OfferModel) private readonly offerModel: types.ModelType<OfferEntity>,
+    @inject(Component.FavoriteModel) private readonly favoriteModel: types.ModelType<FavoriteEntity>,
+    @inject(Component.CommentModel) private readonly commentModel: types.ModelType<CommentEntity>
   ) {}
 
   public async create(dto: CreateOfferDto): Promise<DocumentType<OfferEntity>> {
@@ -58,7 +55,7 @@ export class DefaultOfferService implements OfferService {
   ): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findByIdAndUpdate(offerId, dto, { new: true })
-      .populate(['host'])
+      .populate(['authorId'])
       .exec();
   }
 
