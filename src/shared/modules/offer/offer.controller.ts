@@ -84,6 +84,7 @@ export class OfferController extends BaseController {
       path: '/',
       method: HttpMethod.Post,
       handler: this.createOffer,
+      middlewares: [new PrivateRouteMiddleware()]
     });
     this.addRoute({
       path: '/:offerId',
@@ -95,13 +96,19 @@ export class OfferController extends BaseController {
       path: '/:offerId',
       method: HttpMethod.Put,
       handler: this.updateOffer,
-      middlewares: [new ValidateObjectIdMiddleware('offerId')],
+      middlewares: [
+        new PrivateRouteMiddleware(),
+        new ValidateObjectIdMiddleware('offerId')
+      ],
     });
     this.addRoute({
       path: '/:offerId',
       method: HttpMethod.Delete,
       handler: this.deleteOffer,
-      middlewares: [new ValidateObjectIdMiddleware('offerId')],
+      middlewares: [
+        new PrivateRouteMiddleware(),
+        new ValidateObjectIdMiddleware('offerId')
+      ],
     });
     this.addRoute({
       path: '/premium/:city',
