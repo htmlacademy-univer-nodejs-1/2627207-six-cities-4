@@ -6,7 +6,7 @@ import { DocumentType, types } from '@typegoose/typegoose';
 import { OfferEntity } from './offer.entity.js';
 import { CreateOfferDto } from './dto/create-offer.dto.js';
 import { UpdateOfferDto } from './dto/update-offer.dto.js';
-import { DEFAULT_OFFER_COUNT, DEFAULT_PREMIUM_OFFER_COUNT, DEFAULT_SORT_TYPE } from './offer.constant.js';
+import { DEFAULT_PREMIUM_OFFER_COUNT, DEFAULT_SORT_TYPE } from './offer.constant.js';
 import { FavoriteEntity } from '../favorite/index.js';
 import { CommentEntity } from '../comment/comment.entity.js';
 
@@ -35,23 +35,15 @@ export class DefaultOfferService implements OfferService {
   ): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findById(offerId)
-      .populate(['userId', 'categories'])
       .exec();
   }
 
   public async find(
-    count?: number,
-    userId?: string
+    _count?: number,
+    _userId?: string
   ): Promise<DocumentType<OfferEntity>[]> {
-    const limit = count ?? DEFAULT_OFFER_COUNT;
-    const offers = await this.offerModel
-      .find()
-      .limit(limit)
-      .sort({ createdAt: DEFAULT_SORT_TYPE })
-      .populate(['host'])
-      .exec();
-
-    return this.addFavoriteToOffer(offers, userId);
+    const offers = await this.offerModel.find();
+    return offers;
   }
 
   public async deleteById(
@@ -88,7 +80,7 @@ export class DefaultOfferService implements OfferService {
 
   public async findPremiumOffersByCity(
     city: City,
-    userId?: string
+    _userId?: string
   ): Promise<types.DocumentType<OfferEntity>[]> {
     const offers = await this.offerModel
       .find({ city, isPremium: true })
@@ -96,7 +88,7 @@ export class DefaultOfferService implements OfferService {
       .sort({ createdAt: DEFAULT_SORT_TYPE })
       .exec();
 
-    return this.addFavoriteToOffer(offers, userId);
+    return offers;
   }
 
   public async getUserFavorites(
@@ -147,26 +139,5 @@ export class DefaultOfferService implements OfferService {
     return this.offerModel
       .findByIdAndUpdate(offerId, { rate: avgRating }, { new: true })
       .exec();
-  }
-
-  private async addFavoriteToOffer<
-    T extends { id: string; isFavorite: boolean }
-  >(offers: T[], userId: string | undefined): Promise<T[]> {
-    if (!userId) {
-      return offers.map((offer) => ({
-        ...offer,
-        isFavorite: false,
-      }));
-    }
-    const favorites = await this.favoriteModel
-      .find({ userId })
-      .lean<{ offerId: string }[]>()
-      .exec();
-    const offerIds = new Set(favorites.map((f) => f.offerId.toString()));
-
-    return offers.map((offer) => ({
-      ...offer,
-      isFavorite: offerIds.has(offer.id.toString()),
-    }));
   }
 }
